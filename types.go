@@ -3,9 +3,9 @@ package flexvolume
 type Status string
 
 const (
-	StatusSuccess Status       = "Success"
-	StatusFailure Status       = "Failure"
-	StatusNotSupported Status  = "Not Supported"
+	StatusSuccess      Status = "Success"
+	StatusFailure      Status = "Failure"
+	StatusNotSupported Status = "Not Supported"
 )
 
 type FlexVolume interface {
@@ -19,5 +19,5 @@ type FlexVolume interface {
 type Response struct {
 	Status  Status `json:"status"`
 	Message string `json:"message"`
-	Device  string `json:"device"`
+	Device  string `json:"device,omitempty"`
 }
