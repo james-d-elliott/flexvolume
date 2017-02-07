@@ -48,7 +48,7 @@ func Commands(fv FlexVolume) []cli.Command {
 			},
 		},
 		{
-			Name:  "umount",
+			Name:  "unmount",
 			Usage: "Mount the volume",
 			Action: func(c *cli.Context) error {
 				return handle(fv.Unmount(c.Args().Get(0)))
