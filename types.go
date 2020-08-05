@@ -14,19 +14,26 @@ const (
 
 // FlexVolume is
 type FlexVolume interface {
-	Capabilities() Capabilities
 	Init() Response
+	Capabilities() Capabilities
+	GetVolumeName(map[string]string) Response
 	Attach(map[string]string) Response
-	Detach(string) Response
-	Mount(string, string, map[string]string) Response
+	WaitForAttach(string, map[string]string) Response
+	IsAttached(map[string]string, string) Response
+	Detach(string, string) Response
+	MountDevice(string, string, map[string]string) Response
+	UnmountDevice(string) Response
+	Mount(string, map[string]string) Response
 	Unmount(string) Response
 }
 
 // Response is
 type Response struct {
-	Status  Status `json:"status"`
-	Message string `json:"message"`
-	Device  string `json:"device,omitempty"`
+	Status     Status `json:"status"`
+	Message    string `json:"message"`
+	Device     string `json:"device,omitempty"`
+	VolumeName string `json:"volumeName"`
+	Attached   bool   `json:"attached"`
 }
 
 // Capabilities is a list of capabilities
